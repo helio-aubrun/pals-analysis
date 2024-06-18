@@ -21,8 +21,8 @@ primary key could be chinese name, english name
 name is primary key
 
 ## possible foreign key
-name is found in Palworld_Data-comparison of ordinary BOSS attributes, Palworld_Data--Palu combat attribute table, Palworld_Data--Palu refresh level, Palworld_Data-Tower BOSS attribute comparison.
-chinese name is found in Palworld_Data--Palu combat attribute table, Palworld_Data-Palu Job Skills Table
-code name is found in Palworld_Data-hide pallu attributes, Palworld_Data--Palu combat attribute table
-Tribe ans BPClass are found in Palworld_Data-hide pallu attributes, Palworld_Data--Palu combat attribute table
-ID is found in Palworld_Data--Palu combat attribute table, Palworld_Data-Palu Job Skills Table, Palworld_Data--Palu refresh level
+- name is found in Palworld_Data-comparison of ordinary BOSS attributes, Palworld_Data--Palu combat attribute table, Palworld_Data--Palu refresh level, Palworld_Data-Tower BOSS attribute comparison.
+- chinese name is found in Palworld_Data--Palu combat attribute table, Palworld_Data-Palu Job Skills Table
+- code name is found in Palworld_Data-hide pallu attributes, Palworld_Data--Palu combat attribute table
+- Tribe ans BPClass are found in Palworld_Data-hide pallu attributes, Palworld_Data--Palu combat attribute table
+- ID is found in Palworld_Data--Palu combat attribute table, Palworld_Data-Palu Job Skills Table, Palworld_Data--Palu refresh level
