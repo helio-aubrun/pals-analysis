@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
 st.set_page_config(page_title="Base Stat Pals", layout="wide")
 
@@ -28,8 +29,26 @@ sorted_selected_columns = selected_columns.sort_values(by="4Dtotal", ascending=F
 top_10_sorted = sorted_selected_columns.head(10)
 sorted_selected_columns_reverse = top_10_sorted.sort_values(by="4Dtotal", ascending=True)
 
-# Il n'est pas nécessaire de transposer le DataFrame pour un graphique à barres horizontales ; utilisez directement les données triées
-top_10_horizontal_bar_chart = sorted_selected_columns_reverse.plot(kind='barh', figsize=(10, 5), legend=False)
+sorted_selected_columns_reverse.set_index("Name", inplace=True)
+
+# Créer le graphique à barres horizontales avec Plotly
+fig = px.bar(
+    sorted_selected_columns_reverse,
+    x="4Dtotal",
+    y=sorted_selected_columns_reverse.index,
+    orientation='h',
+    title="Top 10 Sorted by 4Dtotal",
+    labels={"4Dtotal": "4Dtotal", "index": "Name"},
+    text="4Dtotal"
+)
+
+# Mettre à jour les couleurs et le style du graphique
+fig.update_traces(marker_color='darkblue', textposition='outside')
+fig.update_layout(
+    plot_bgcolor='rgba(0,0,0,0)',
+    paper_bgcolor='rgba(0,0,0,0)',
+    font_color='white'
+)
 
 # Afficher le graphique avec Streamlit
-st.pyplot(top_10_horizontal_bar_chart.figure)
+st.plotly_chart(fig)
