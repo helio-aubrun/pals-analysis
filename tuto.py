@@ -49,6 +49,7 @@ fig.update_layout(
     paper_bgcolor='rgba(0,0,0,0)',
     font_color='white'
 )
+fig.update_xaxes(visible=False)
 
 # Afficher le graphique avec Streamlit
 st.plotly_chart(fig)
