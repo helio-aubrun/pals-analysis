@@ -23,7 +23,7 @@ else:
     selected_option = choice.replace("Autre ", "")
 
 # Filtrer le dataframe selon la sélection
-filtered_df = df[df["Element1"] == selected_option]
+filtered_df = df[df['Element1'].isin([selected_option]) | df['Element2'].isin([selected_option])]
 selected_columns = filtered_df.loc[:, ["Name", "4Dtotal"]]
 sorted_selected_columns = selected_columns.sort_values(by="4Dtotal", ascending=False)
 top_10_sorted = sorted_selected_columns.head(10)
@@ -38,7 +38,7 @@ fig = px.bar(
     y=sorted_selected_columns_reverse.index,
     orientation='h',
     title="Top 10 Sorted by 4Dtotal",
-    labels={"4Dtotal": "4Dtotal", "index": "Name"},
+    labels={"index": "Name"},
     text="4Dtotal"
 )
 
