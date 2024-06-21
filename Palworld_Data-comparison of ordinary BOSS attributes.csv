@@ -1,7 +1,4 @@
-﻿"The BOSS version of each Palu only takes 20%~40% damage, has a capture rate of about 70%, has a riding sprint speed of 100 points, and is larger in size.",,,,,,,
-"In addition, a small number of BOSS have differences in HP and attack, see the table below. There is no difference in other attributes except those listed below",,,,,,,
-,,,,,,,
-name,HP,,name,Remote attack,,name,Riding speed (BOSS is 100 higher)
+﻿name,HP,,name,Remote attack,,name,Riding speed (BOSS is 100 higher)
 Chaos Knight BOSS,260,,Melupa BOSS,90,,Zixialu BOSS,1000
 Chaos Knight,130,,Melupa,75,,Zixia Deer,900
 Winter Caller Beast BOSS,420,,Volt Meow BOSS,80,,Suzaku BOSS,1200
