@@ -38,7 +38,7 @@ fig = px.bar(
     x="4Dtotal",
     y=sorted_selected_columns_reverse.index,
     orientation='h',
-    title="Top 10 Sorted by 4Dtotal",
+    title="Top 10 des pals ayant le plus de statistique par types",
     labels={"index": "Name"},
     text="4Dtotal"
 )
@@ -70,9 +70,20 @@ labels = counts_total_percentage.index
 values = counts_total_percentage.values
 
 fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
-fig.update_layout(title_text="Répartition des éléments")
+fig.update_layout(title_text="Répartition des types",
+                height=600,  # Hauteur de la figure en pixels
+                width=800,
+                legend=dict(
+                    font_size=16,  # Taille de la police de la légende
+    )
+)
 
 st.plotly_chart(fig)
+
+image_path = 'image/type.jpg'
+
+# Afficher l'image dans votre application Streamlit
+st.image(image_path)
 
 riding_df = df.loc[:, ["Name", "Riding_sprint_speed"]]
 sorted_riding_df = riding_df.sort_values(by="Riding_sprint_speed", ascending=False)
@@ -86,7 +97,7 @@ fig_riding = px.bar(
     x="Riding_sprint_speed",
     y=sorted_riding_df_reverse.index,
     orientation='h',
-    title="Top 10 Sorted by Riding_sprint_speed",
+    title="Top 10 des montures les plus rapides",
     labels={"index": "Name"},
     text="Riding_sprint_speed"
 )
