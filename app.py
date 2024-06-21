@@ -8,6 +8,7 @@ st.set_page_config(page_title="Base Stat Pals", layout="wide")
 df = pd.read_csv('Palworld_Data--Palu combat attribute table.csv')
 df_job = pd.read_csv('Palworld_Data-Palu Job Skills Table.csv')
 
+# Sidebar pour filtrer par type
 # Définir les options pour la radio et la multiselect
 options_radio = ["generally"]
 options_multiselect = df["Element1"].unique().tolist()
@@ -23,6 +24,7 @@ else:
     # Si l'utilisateur choisit "generally" ou toute autre option non "Autre", procéder avec cette sélection
     selected_option = choice.replace("Autre ", "")
 
+# Début du grahique Top 10 des pals ayant le plus de statistique par types
 # Filtrer le dataframe pour le top 10 des pals avec le plus de stats hp, def, atk
 filtered_df = df[df['Element1'].isin([selected_option]) | df['Element2'].isin([selected_option])]
 selected_columns = filtered_df.loc[:, ["Name", "4Dtotal"]]
@@ -55,7 +57,9 @@ fig.update_yaxes(title="")
 
 # Afficher le graphique avec Streamlit
 st.plotly_chart(fig)
+# Fin du grahique Top 10 des pals ayant le plus de statistique par types
 
+# Début du graphique Répartition des types
 element1_counts = df['Element1'].value_counts()
 element2_counts = df['Element2'].value_counts()
 
@@ -72,19 +76,21 @@ values = counts_total_percentage.values
 fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
 fig.update_layout(title_text="Répartition des types",
                 height=600,  # Hauteur de la figure en pixels
-                width=800,
+                width=800,  # Largeur de la figure en pixels
                 legend=dict(
                     font_size=16,  # Taille de la police de la légende
     )
 )
 
 st.plotly_chart(fig)
-
-image_path = 'image/type.jpg'
+# Fin du graphique Répartition des types
 
 # Afficher l'image dans votre application Streamlit
+image_path = 'image/type.jpg'
 st.image(image_path)
 
+
+# Début du graphique Top 10 des montures les plus rapides
 riding_df = df.loc[:, ["Name", "Riding_sprint_speed"]]
 sorted_riding_df = riding_df.sort_values(by="Riding_sprint_speed", ascending=False)
 top_10_riding = sorted_riding_df.head(10)
@@ -114,7 +120,9 @@ fig_riding.update_yaxes(title="")
 
 # Afficher le graphique avec Streamlit
 st.plotly_chart(fig_riding)
+# Fin du graphique Top 10 des montures les plus rapides
 
+# Sidebar pour filtrer par job
 # Définir les options pour la radio et la multiselect
 options_radio = ["Make a fire"]
 options_multiselect = ["watering","planting","generate electricity","manual","collection","logging","Mining","pharmaceutical","cool down","pasture","carry","Handling speed"]
@@ -129,6 +137,7 @@ else:
     # Si l'utilisateur choisit "generally" ou toute autre option non "Autre", procéder avec cette sélection
     selected_option_job = choice.replace("Autre ", "")
 
+# Début du graphique Top 5 des pals par job
 filtered_df_job = df_job[df_job[selected_option_job]]
 selected_columns_job = filtered_df_job.loc[:, ["English name", selected_option_job]]
 sorted_selected_columns_job = selected_columns_job.sort_values(by=selected_option_job, ascending=False)
@@ -143,7 +152,7 @@ fig_job = px.bar(
     x=selected_option_job,
     y=sorted_selected_columns_reverse.index,
     orientation='h',
-    title="Top 5 Sorted by 4Dtotal",
+    title="Top 5 des pals par job",
     labels={"index": "English name"},
     text=selected_option_job
 )
@@ -160,3 +169,4 @@ fig_job.update_yaxes(title="")
 
 # Afficher le graphique avec Streamlit
 st.plotly_chart(fig_job)
+# Fin du graphique Top 5 des pals par job
