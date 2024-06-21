@@ -31,7 +31,6 @@ selected_columns = filtered_df.loc[:, ["Name", "4Dtotal"]]
 sorted_selected_columns = selected_columns.sort_values(by="4Dtotal", ascending=False)
 top_10_sorted = sorted_selected_columns.head(10)
 sorted_selected_columns_reverse = top_10_sorted.sort_values(by="4Dtotal", ascending=True)
-
 sorted_selected_columns_reverse.set_index("Name", inplace=True)
 
 # Créer le graphique à barres horizontales avec Plotly
