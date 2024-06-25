@@ -27,41 +27,46 @@ else:
 stat_choice = st.sidebar.multiselect(
     "Sélectionnez une ou plusieurs statistique :",
     options=["HP","melee attack","Remote attack","defense"],
-    default=["HP","melee attack","Remote attack","defense"] 
+    default=["HP","melee attack","Remote attack","defense"]
 )
 
 # Début du grahique Top 10 des pals ayant le plus de statistique par types
+pals_with_selected_option = df[(df['Element1'] == selected_option) | (df['Element2'] == selected_option)]
 # Filtrer le dataframe pour le top 10 des pals avec le plus de stats hp, def, atk
-filtered_df = df[df['Element1'].isin([selected_option]) | df['Element2'].isin([selected_option])]
-selected_columns = filtered_df.loc[:, ["Name", "4Dtotal"]]
-sorted_selected_columns = selected_columns.sort_values(by="4Dtotal", ascending=False)
-top_10_sorted = sorted_selected_columns.head(10)
-sorted_selected_columns_reverse = top_10_sorted.sort_values(by="4Dtotal", ascending=True)
-sorted_selected_columns_reverse.set_index("Name", inplace=True)
+# Étape 1 & 2: Filtrer le DataFrame pour ne conserver que les lignes où au moins une des colonnes spécifiées dans stat_choice est présente
+filtered_df_sum = pals_with_selected_option[pals_with_selected_option[stat_choice].notnull().any(axis=1)]
 
-# Créer le graphique à barres horizontales avec Plotly
-fig = px.bar(
-    sorted_selected_columns_reverse,
-    x="4Dtotal",
-    y=sorted_selected_columns_reverse.index,
+# Étape 1: Calculer la somme des valeurs pour chaque pal selon les colonnes spécifiées dans stat_choice
+summed_columns = ['sum_' + col for col in stat_choice]
+for col in stat_choice:
+    filtered_df_sum['sum_' + col] = filtered_df_sum.groupby(level=0)[col].transform('sum')
+
+# Étape 2: Calculer la somme totale pour chaque pal
+filtered_df_sum['Total_Sum'] = filtered_df_sum[summed_columns].sum(axis=1)
+
+# Étape 3: Trier le DataFrame pour obtenir le top 10 des pals avec la somme la plus élevée selon les colonnes spécifiées
+top_10_sorted_sum = filtered_df_sum.nlargest(10, 'Total_Sum')
+top_10_sorted_sum_reverse = top_10_sorted_sum.sort_values(by='Total_Sum', ascending=True)
+# Étape 4: Créer et afficher le graphique à barres horizontales
+fig_sum = px.bar(
+    top_10_sorted_sum,
+    x=top_10_sorted_sum_reverse['Total_Sum'],
+    y=top_10_sorted_sum_reverse['Name'],
     orientation='h',
-    title="Top 10 des pals ayant le plus de statistique par types",
-    labels={"index": "Name"},
-    text="4Dtotal"
+    title="Top 10 des pals avec la somme la plus élevée selon les statistiques choisies",
+    labels={"x": "Somme totale", "y": "Nom"}
 )
 
-# Mettre à jour les couleurs et le style du graphique
-fig.update_traces(marker_color='darkblue', textposition='outside')
-fig.update_layout(
+fig_sum.update_traces(marker_color='darkblue', textposition='outside')
+fig_sum.update_layout(
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
     font_color='white'
 )
-fig.update_xaxes(visible=False)
-fig.update_yaxes(title="")
+fig_sum.update_xaxes(visible=False)
+fig_sum.update_yaxes(title="")
 
-# Afficher le graphique avec Streamlit
-st.plotly_chart(fig)
+st.plotly_chart(fig_sum)
 # Fin du grahique Top 10 des pals ayant le plus de statistique par types
 
 # Début du graphique Répartition des types
