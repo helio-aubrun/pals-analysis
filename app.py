@@ -24,6 +24,12 @@ else:
     # Si l'utilisateur choisit "generally" ou toute autre option non "Autre", procéder avec cette sélection
     selected_option = choice.replace("Autre ", "")
 
+stat_choice = st.sidebar.multiselect(
+    "Sélectionnez une ou plusieurs statistique :",
+    options=["HP","melee attack","Remote attack","defense"],
+    default=["HP","melee attack","Remote attack","defense"] 
+)
+
 # Début du grahique Top 10 des pals ayant le plus de statistique par types
 # Filtrer le dataframe pour le top 10 des pals avec le plus de stats hp, def, atk
 filtered_df = df[df['Element1'].isin([selected_option]) | df['Element2'].isin([selected_option])]
