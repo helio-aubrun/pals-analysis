@@ -137,35 +137,38 @@ else:
     selected_option_job = choice.replace("Autre ", "")
 
 # Début du graphique Top 5 des pals par job
-filtered_df_job = df_job[df_job[selected_option_job]]
-selected_columns_job = filtered_df_job.loc[:, ["English name", selected_option_job]]
-sorted_selected_columns_job = selected_columns_job.sort_values(by=selected_option_job, ascending=False)
+filtered_df_job = df_job.dropna(subset=[selected_option_job])
+
+# Sort the filtered DataFrame by the selected column in descending order
+sorted_selected_columns_job = filtered_df_job.sort_values(by=selected_option_job, ascending=False)
+
+# Select the top 5 entries
 top_5_sorted_job = sorted_selected_columns_job.head(5)
 sorted_selected_columns_reverse_job = top_5_sorted_job.sort_values(by=selected_option_job, ascending=True)
 
+# Set the index to the English name column for better visualization
 sorted_selected_columns_reverse_job.set_index("English name", inplace=True)
 
-# Créer le graphique à barres horizontales avec Plotly
+# Create the horizontal bar chart with Plotly
 fig_job = px.bar(
-    sorted_selected_columns_reverse,
-    x=selected_option_job,
-    y=sorted_selected_columns_reverse.index,
-    orientation='h',
-    title="Top 5 des pals par job",
+    sorted_selected_columns_reverse_job,
+    y=selected_option_job,
+    x=sorted_selected_columns_reverse_job.index,
+    orientation='v',
+    title=f"Top 5 des pals par {selected_option_job}",
     labels={"index": "English name"},
     text=selected_option_job
 )
 
-# Mettre à jour les couleurs et le style du graphique
+# Update the colors and style of the chart
 fig_job.update_traces(marker_color='darkblue', textposition='outside')
 fig_job.update_layout(
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
     font_color='white'
 )
-fig_job.update_xaxes(visible=False)
-fig_job.update_yaxes(title="")
+fig_job.update_yaxes(visible=False)
+fig_job.update_xaxes(title="")
 
-# Afficher le graphique avec Streamlit
+# Display the chart with Streamlit
 st.plotly_chart(fig_job)
-# Fin du graphique Top 5 des pals par job
