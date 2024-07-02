@@ -7,8 +7,8 @@ def set_page_config():
     st.set_page_config(page_title="Base Stat Pals", layout="wide")
 
 def load_data():
-    df = pd.read_csv('Palworld_Data--Palu combat attribute table.csv', skiprows=[0])
-    df_job = pd.read_csv('Palworld_Data-Palu Job Skills Table.csv', skiprows=[0])
+    df = pd.read_csv('csv/Palworld_Data--Palu combat attribute table.csv', skiprows=[0])
+    df_job = pd.read_csv('csv/Palworld_Data-Palu Job Skills Table.csv', skiprows=[0])
     return df, df_job
 
 def create_sidebar(df, df_job=None):
