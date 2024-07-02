@@ -53,8 +53,10 @@ Cela nous donnerait donc cette équipe :
 
 Reste la question du camps, les jobs étant nombreux et divers, une liste des meilleurs pals par job est disponible sur le streamlit.
 
+  ----------------
+
 ## Comment lancer le projet 
 Afin de pouvoir lancer le projet, il est nécessaire de tout télécharger et de mettre les fichiers dans le même dossier de sorte à reproduire l'architecture présente dans le main.  
-Certaine bibliothèque python étant nécessaire, un fichier requirements.txt est mis à disposition afin de tout télécharger d'un coup grâce à la commande terminal pip install -r requirements.txt.
+Certaine bibliothèque python étant nécessaire, un fichier requirements.txt est mis à disposition afin de tout télécharger d'un coup grâce à la commande terminal pip install -r requirements.txt.  
 Le fichier pals_notebook.ipynb est le notebook. Il est ouvrable avec différents outils tel que jupyter ou VScode.  
 Pour le streamlit, il suffit de lancer la commande streamlit run app.py dans votre terminal dans le dossier ou vous avez télécharger le projet. Une page web va s'ouvrir sur votre navigateur.  
