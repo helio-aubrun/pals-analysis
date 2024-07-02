@@ -40,4 +40,21 @@ Les 2 premiers filtres sont utilisées pour le 1èr graphiques tandis que le 3è
 Grâce à nos merveilleux outils, nous pouvons donc établir une équipe parfaite selon ces critères : La répartition des types, prendre les pals dont le type est super efficace sur les types les plus présent du jeux. Et le total de statistique à savoir HP, melee ATK, remote ATK et defense.  
 Cela nous donnerait donc cette équipe :  
 * Jormuntide ignis, de types dragon et feu il contre les 2 types les plus présents dans le jeux ténèbres et bois. Il a un total de stat de 510 et peut être considéré comme le meilleur pals du jeux.
-* Jormuntide, cousin de Jormuntide ignis de type dragon et eau cette fois, ici son type eau permet de contrer les types feu qui est le 3ème type le plus présent. Il a un total de stat de 500
+* Jormuntide, cousin de Jormuntide ignis de type dragon et eau cette fois, ici son type eau permet de contrer les types feu qui est le 3ème type le plus présent. Il a un total de stat de 500.
+* Frostallion noct, de type ténèbres pur, il est très efficace contre les types neutres. Ce pals légendaire à le total de stat le plus élevé avec 515.  
+* Warsect, il fera certe pâle figure au milieu des pals de votre équipe avec ses 440 de stat totals, mais son type plante s'averera très efficace contre les types sol.  
+  Comme vous le savez peut-être, une équipe est composé de 5 pals, il nous manque donc un dernier candidat pour une place dans l'équipe ultime.  
+  Cette fois-ci tournons nous vers un autre aspect du jeux les montures.  
+  Les montures vont principalement vous premettre de vous déplacer plus rapidement qu'à pieds, nous voulons donc le plus rapide.  
+  Et ce pals n'est autre que Jetdragon qui atteint une vitesse de 3300. A titre de comparaison, le 2ème Necromus n'atteind une vitesse que de 1600.  
+  JetDragon reste aussi un bon pals à utiliser en combat avec ses 460 de total de stat.
+
+  ----------------
+
+Reste la question du camps, les jobs étant nombreux et divers, une liste des meilleurs pals par job est disponible sur le streamlit.
+
+## Comment lancer le projet 
+Afin de pouvoir lancer le projet, il est nécessaire de tout télécharger et de mettre les fichiers dans le même dossier de sorte à reproduire l'architecture présente dans le main.  
+Certaine bibliothèque python étant nécessaire, un fichier requirements.txt est mis à disposition afin de tout télécharger d'un coup grâce à la commande terminal pip install -r requirements.txt.
+Le fichier pals_notebook.ipynb est le notebook. Il est ouvrable avec différents outils tel que jupyter ou VScode.  
+Pour le streamlit, il suffit de lancer la commande streamlit run app.py dans votre terminal dans le dossier ou vous avez télécharger le projet. Une page web va s'ouvrir sur votre navigateur.  
