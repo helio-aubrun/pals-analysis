@@ -5,13 +5,13 @@ import plotly.graph_objects as go
 
 st.set_page_config(page_title="Base Stat Pals", layout="wide")
 
-df = pd.read_csv('Palworld_Data--Palu combat attribute table.csv')
-df_job = pd.read_csv('Palworld_Data-Palu Job Skills Table.csv')
+df = pd.read_csv('Palworld_Data--Palu combat attribute table.csv', skiprows=[0])
+df_job = pd.read_csv('Palworld_Data-Palu Job Skills Table.csv', skiprows=[0])
 
 # Sidebar pour filtrer par type
 # Définir les options pour la radio et la multiselect
 options_radio = ["generally"]
-options_multiselect = df["Element1"].unique().tolist()
+options_multiselect = df["Element 1"].unique().tolist()
 options_multiselect.pop(0)
 # Utiliser sidebar pour placer le choix dans la sidebar
 with st.sidebar:
@@ -31,7 +31,7 @@ stat_choice = st.sidebar.multiselect(
 )
 
 # Début du grahique Top 10 des pals ayant le plus de statistique par types
-pals_with_selected_option = df[(df['Element1'] == selected_option) | (df['Element2'] == selected_option)]
+pals_with_selected_option = df[(df['Element 1'] == selected_option) | (df['Element 2'] == selected_option)]
 # Filtrer le dataframe pour le top 10 des pals avec le plus de stats hp, def, atk
 # Étape 1 & 2: Filtrer le DataFrame pour ne conserver que les lignes où au moins une des colonnes spécifiées dans stat_choice est présente
 filtered_df_sum = pals_with_selected_option[pals_with_selected_option[stat_choice].notnull().any(axis=1)]
@@ -70,8 +70,8 @@ st.plotly_chart(fig_sum)
 # Fin du grahique Top 10 des pals ayant le plus de statistique par types
 
 # Début du graphique Répartition des types
-element1_counts = df['Element1'].value_counts()
-element2_counts = df['Element2'].value_counts()
+element1_counts = df['Element 1'].value_counts()
+element2_counts = df['Element 2'].value_counts()
 
 # Fusionner les comptages pour avoir un seul ensemble de données
 counts_total = element1_counts.add(element2_counts, fill_value=0)
@@ -101,21 +101,21 @@ st.image(image_path)
 
 
 # Début du graphique Top 10 des montures les plus rapides
-riding_df = df.loc[:, ["Name", "Riding_sprint_speed"]]
-sorted_riding_df = riding_df.sort_values(by="Riding_sprint_speed", ascending=False)
+riding_df = df.loc[:, ["Name", "Riding sprint speed"]]
+sorted_riding_df = riding_df.sort_values(by="Riding sprint speed", ascending=False)
 top_10_riding = sorted_riding_df.head(10)
-sorted_riding_df_reverse = top_10_riding.sort_values(by="Riding_sprint_speed", ascending=True)
+sorted_riding_df_reverse = top_10_riding.sort_values(by="Riding sprint speed", ascending=True)
 sorted_riding_df_reverse.set_index("Name", inplace=True)
 
 # Créer le graphique à barres horizontales avec Plotly
 fig_riding = px.bar(
     sorted_riding_df_reverse,
-    x="Riding_sprint_speed",
+    x="Riding sprint speed",
     y=sorted_riding_df_reverse.index,
     orientation='h',
     title="Top 10 des montures les plus rapides",
     labels={"index": "Name"},
-    text="Riding_sprint_speed"
+    text="Riding sprint speed"
 )
 
 # Mettre à jour les couleurs et le style du graphique

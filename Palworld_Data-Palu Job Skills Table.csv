@@ -1,4 +1,5 @@
-﻿ID,English name,Chinese name,Volume size,Food intake,night shift,Total skills,Make a fire,watering,planting,generate electricity,manual,collection,logging,Mining,pharmaceutical,cool down,pasture,carry,Handling speed,ranch items,pasture minimum output,The largest ranch (Rank = partner skill level)
+﻿Related Links Directory Palu Combat Attribute Table Food BUFF Work Disease DEBUFF,,,,,,,,,,,,,,,,,,,,,,
+ID,English name,Chinese name,Volume size,Food intake,night shift,Total skills,Make a fire,watering,planting,generate electricity,manual,collection,logging,Mining,pharmaceutical,cool down,pasture,carry,Handling speed,ranch items,pasture minimum output,The largest ranch (Rank = partner skill level)
 1,Lamball,Mian Youyou,smallest,2,,3,0,0,0,0,1,0,0,0,0,0,1,1,160,wool,1,Rank
 2,Cattiva,Naughty cat,smallest,2,,4,0,0,0,0,1,1,0,1,0,0,0,1,160,,,
 3,Chikipi,Pipi Chicken,smallest,1,,2,0,0,0,0,0,1,0,0,0,0,1,0,,Egg,1,Rank
