@@ -15,6 +15,7 @@ def create_sidebar(df, df_job=None):
     options_radio = ["generally"]
     options_multiselect = df["Element 1"].unique().tolist()
     options_multiselect.pop(0)
+    options_multiselect_job = ["watering","planting","generate electricity","manual","collection","logging","Mining","pharmaceutical"]
     
     with st.sidebar:
         choice_type = st.radio("Type:", options_radio + [f"{i}" for i in options_multiselect])
@@ -31,10 +32,10 @@ def create_sidebar(df, df_job=None):
         else:
             selected_option_type = choice_type.replace("Autre ", "")
         
-        choice_job = st.radio("Job:", ["Make a fire"] + [f"{i}" for i in options_multiselect])
+        choice_job = st.radio("Job:", ["Make a fire"] + [f"{i}" for i in options_multiselect_job])
         
         if choice_job == "Autre":
-            selected_option_job = st.selectbox("Sélectionnez une option spécifique pour le job:", options_multiselect)
+            selected_option_job = st.selectbox("Sélectionnez une option spécifique pour le job:", options_multiselect_job)
         else:
             selected_option_job = choice_job.replace("Autre ", "")
     
