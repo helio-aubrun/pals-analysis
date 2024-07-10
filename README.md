@@ -17,7 +17,6 @@ Nous somme donc parti de données récoltées du jeux afin d'étudier ces donné
 
 ### 1ère étape : importer les données
 Après avoir récupérer les données sous forme de fichier csv, ils nous fallaient les importer sur nos ordinateur. Nous sommes donc parti sur une base de données MySQL car nous étions familliés avec cette outil.  
-/// suspens attendre parti fini
 
 ----------------
 
